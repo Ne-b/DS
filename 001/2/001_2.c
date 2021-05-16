@@ -26,7 +26,7 @@ int main()
 {
     FILE * f = fopen("D:\\Works\\C\\DS\\001\\2\\001_2_o.txt", "w");
     int m, n;
-    //������m���� ÿ����n��
+    //猴子有m个， 每次数n个
     FILE * t = fopen("D:\\Works\\C\\DS\\001\\2\\001_2_i.txt", "r");
     fscanf(t, "%d %d", &m, &n);
     fclose(t);
@@ -40,19 +40,19 @@ int main()
     }
     now->next = head;
     now->next->before = now;
-    //ÿ���Ӧһֻδ�뿪�ĺ��ӣ�iΪ���ӱ��-1
+    //每项对应一只未离开的猴子，i为猴子编号-1
 
-    //��ǰӦ��nowָ��ĺ��ӿ�ʼ��
+    //当前应从now指向的猴子开始数
     while(now->next != now){
-        //��ʣ���������Ψһʱ
+        //当剩余猴子数不唯一时
         for(int i = 0; i < n; ++i){
             now = now->next;
         }
         delmk(&now);
-        //�������ĺ����뿪
+        //被数到的猴子离开
     }
 
-    fprintf(f, "��%dֻ����Ϊ������\n", now->i + 1);
+    fprintf(f, "第%d只猴子为猴王。\n", now->i + 1);
 
     return 0;
 }
