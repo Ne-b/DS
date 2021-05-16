@@ -2,6 +2,6 @@
 
 This is data structure homework.
 
-Welcome to using PR to offer proposals.
+Sorry the question stems are not here, but using PR to offer proposals is still welcome.
 
 Please note the GPL-3.0 License.
