@@ -36,6 +36,10 @@ void print_dfs(FILE *fo, int **graph, int id)
 void dfs(FILE *fo, int **graph, int id)
 {
     print_dfs(fo, graph, id);
+    for (int i = 1; i <= graph[0][0]; ++i)
+    {
+        print_dfs(fo, graph, i);
+    }
     fprintf(fo, "\n");
     clear(graph);
 }
@@ -47,10 +51,19 @@ void print_bfs(FILE *fo, int **graph, int id)
         int i;
         struct Queue *next;
     } queue;
-    queue *h = malloc(sizeof(queue)), *t = h;
-    graph[0][id] = 1;
-    h->i = id;
-    h->next = NULL;
+    queue *h, *t;
+    if (!graph[0][id])
+    {
+        h = malloc(sizeof(queue));
+        t = h;
+        graph[0][id] = 1;
+        h->i = id;
+        h->next = NULL;
+    }
+    else
+    {
+        h = NULL;
+    }
 
     while (h)
     {
@@ -75,6 +88,11 @@ void print_bfs(FILE *fo, int **graph, int id)
 void bfs(FILE *fo, int **graph, int id)
 {
     print_bfs(fo, graph, id);
+    for (int i = 1; i <= graph[0][0]; ++i)
+    {
+
+        print_bfs(fo, graph, i);
+    }
     fprintf(fo, "\n");
     clear(graph);
 }
@@ -84,7 +102,7 @@ int main()
     FILE *fi = fopen("D:\\Works\\C\\DS\\006\\2\\006_2_i.txt", "r");
     int n;
     fscanf(fi, "%d ", &n);
-    int **graph = malloc(sizeof(int) * (n + 1));
+    int **graph = malloc(sizeof(int *) * (n + 1));
     for (int i = 0; i <= n; ++i)
     {
         graph[i] = malloc(sizeof(int) * (n + 1));
