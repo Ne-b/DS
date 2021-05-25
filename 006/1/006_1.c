@@ -71,6 +71,10 @@ void print_dfs(FILE *fo, node *graph, int id)
 void dfs(FILE *fo, node *graph, int id)
 {
     print_dfs(fo, graph, id);
+    for (int i = 1; i <= graph[0].flag; ++i)
+    {
+        print_dfs(fo, graph, i);
+    }
     fprintf(fo, "\n");
     clear(graph);
 }
@@ -82,10 +86,19 @@ void print_bfs(FILE *fo, node *graph, int id)
         int i;
         struct Queue *next;
     } queue;
-    queue *h = malloc(sizeof(queue)), *t = h;
-    graph[id].flag = 1;
-    h->i = id;
-    h->next = NULL;
+    queue * h, *t;
+    if (!graph[id].flag)
+    {
+        h = malloc(sizeof(queue));
+        t = h;
+        graph[id].flag = 1;
+        h->i = id;
+        h->next = NULL;
+    }
+    else
+    {
+        h = NULL;
+    }
 
     while (h)
     {
@@ -112,6 +125,10 @@ void print_bfs(FILE *fo, node *graph, int id)
 void bfs(FILE *fo, node *graph, int id)
 {
     print_bfs(fo, graph, id);
+    for (int i = 1; i <= graph[0].flag; ++i)
+    {
+        print_bfs(fo, graph, i);
+    }
     fprintf(fo, "\n");
     clear(graph);
 }
