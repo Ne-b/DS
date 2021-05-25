@@ -58,7 +58,6 @@ void print_dfs(FILE *fo, node *graph, int id)
     if (!graph[id].flag)
     {
         fprintf(fo, "%d ", id);
-        fprintf(stdout, "%d ", id);
         graph[id].flag = 1;
         link *temp = graph[id].link;
         while (temp)
@@ -104,7 +103,6 @@ void print_bfs(FILE *fo, node *graph, int id)
     while (h)
     {
         fprintf(fo, "%d ", h->i);
-        fprintf(stdout, "%d ", h->i);
         link *temp = graph[h->i].link;
         while (temp)
         {
