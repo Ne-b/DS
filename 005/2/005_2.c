@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #define MAX 1024
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct nodes
 {
     struct nodes *left;
@@ -248,7 +251,7 @@ void adjust(node *root, int i)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\005\\2\\005_2_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     node *root = malloc(sizeof(node));
     root->left = root->right = NULL;
     char *i = malloc(sizeof(char) * MAX);
@@ -284,7 +287,7 @@ int main()
     }
     fclose(fi);
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\005\\2\\005_2_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
     fprintf(fo, "dlr: ");
     print_dlr_r(fo, root);
     fprintf(fo, "\nldr: ");
