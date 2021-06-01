@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 void add(FILE *fi, int **graph)
 {
     int a, b;
@@ -99,7 +102,7 @@ void bfs(FILE *fo, int **graph, int id)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\006\\2\\006_2_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     int n;
     fscanf(fi, "%d ", &n);
     int **graph = malloc(sizeof(int *) * (n + 1));
@@ -117,7 +120,7 @@ int main()
     }
     fclose(fi);
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\006\\2\\006_2_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
     fprintf(fo, "DFS: ");
     dfs(fo, graph, 1);
     fprintf(fo, "BFS: ");
