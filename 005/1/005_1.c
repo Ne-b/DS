@@ -4,6 +4,9 @@
 
 #define MAX 1024
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 // recursive 递归
 // iteration 迭代
 
@@ -339,14 +342,14 @@ int print_hierarchy(FILE *f, node *root)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\005\\1\\005_1_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
 
     node *root;
     creat(&root, fi);
 
     fclose(fi);
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\005\\1\\005_1_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
 
     fprintf(fo, "recursive: \n\tdlr: ");
     print_dlr_r(fo, root);
