@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct
 {
     int x;
@@ -64,7 +67,7 @@ int bfs(point **graph, int *s, int r, int c)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\006\\3\\006_3_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     int r = 0, c = 0, flag = 1;
     char ch;
     while ((ch = fgetc(fi)) != EOF)
@@ -114,7 +117,7 @@ int main()
     }
     fclose(fi);
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\006\\3\\006_3_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
     if(bfs(maze, s, r, c)){
     int tempx = e[0], tempy = e[1];
     while (maze[tempx][tempy].px != maze[tempx][tempy].x || maze[tempx][tempy].py != maze[tempx][tempy].y)
