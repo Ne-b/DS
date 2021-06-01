@@ -6,6 +6,9 @@
 
 #define L 1024
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 void f(char *s)
 {
     for (int i = 0; s[i]; ++i)
@@ -116,7 +119,7 @@ int operate(int a, int b, char c)
 
 int main()
 {
-    FILE *ip = fopen("D:\\Works\\C\\DS\\003\\003_i.txt", "r");
+    FILE *ip = fopen(FILE_IN, "r");
     char expression[L];
     fgets(expression, L, ip);
     f(expression);
@@ -160,7 +163,7 @@ int main()
         }
     }
 
-    FILE *op = fopen("D:\\Works\\C\\DS\\003\\003_o.txt", "w");
+    FILE *op = fopen(FILE_OUT, "w");
     fprintf(op, "%d\n", num[0]);
     fclose(op);
 
