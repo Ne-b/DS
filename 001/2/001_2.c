@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct monkey{
     struct monkey * before;
     int i;
@@ -24,10 +27,10 @@ void delmk(mk ** now){
 
 int main()
 {
-    FILE * f = fopen("D:\\Works\\C\\DS\\001\\2\\001_2_o.txt", "w");
+    FILE * f = fopen(FILE_OUT, "w");
     int m, n;
     //猴子有m个， 每次数n个
-    FILE * t = fopen("D:\\Works\\C\\DS\\001\\2\\001_2_i.txt", "r");
+    FILE * t = fopen(FILE_IN, "r");
     fscanf(t, "%d %d", &m, &n);
     fclose(t);
 
