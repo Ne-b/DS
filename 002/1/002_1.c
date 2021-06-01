@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 ///单项节点
 typedef struct polynomial
 {
@@ -241,8 +245,8 @@ poly *divide(poly *head1, poly *head2)
 
 int main()
 {
-    FILE *f = fopen("D:\\Works\\C\\DS\\002\\1\\002_1_o.txt", "w");
-    FILE *t = fopen("D:\\Works\\C\\DS\\002\\1\\002_1_i.txt", "r");
+    FILE *f = fopen(FILE_OUT, "w");
+    FILE *t = fopen(FILE_IN, "r");
 
     poly *head1 = newpoly(&t);
     poly *head2 = newpoly(&t);
