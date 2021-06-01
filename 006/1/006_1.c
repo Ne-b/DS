@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct Link
 {
     int node_id;
@@ -135,7 +138,7 @@ void bfs(FILE *fo, node *graph, int id)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\006\\1\\006_1_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     int n;
     fscanf(fi, "%d ", &n);
     node *graph = malloc(sizeof(node) * (n + 1));
@@ -149,7 +152,7 @@ int main()
     }
     fclose(fi);
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\006\\1\\006_1_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
     fprintf(fo, "DFS: ");
     dfs(fo, graph, 1);
     fprintf(fo, "BFS: ");
