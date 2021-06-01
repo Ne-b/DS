@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 int sum(int *mk, int m)
 {
     //求和即得当前剩余猴子数
@@ -14,11 +17,11 @@ int sum(int *mk, int m)
 
 int main()
 {
-    FILE *f = fopen("D:\\Works\\C\\DS\\001\\1\\001_1_o.txt", "w");
+    FILE *f = fopen(FILE_OUT, "w");
 
     int m, n;
     //猴子有m个， 每次数n个
-    FILE * t = fopen("D:\\Works\\C\\DS\\001\\1\\001_1_i.txt", "r");
+    FILE * t = fopen(FILE_IN, "r");
     fscanf(t, "%d %d", &m, &n);
     fclose(t);
     int *mk = malloc(sizeof(int) * m);
