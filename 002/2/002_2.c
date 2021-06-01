@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct variable
 {
     char var;
@@ -138,8 +141,8 @@ poly *add(poly *head1, poly *head2)
 
 int main()
 {
-    FILE *f = fopen("D:\\Works\\C\\DS\\002\\2\\002_2_o.txt", "w");
-    FILE *t = fopen("D:\\Works\\C\\DS\\002\\2\\002_2_i.txt", "r");
+    FILE *f = fopen(FILE_OUT, "w");
+    FILE *t = fopen(FILE_IN, "r");
 
     poly *head1 = newpoly(&t);
     poly *head2 = newpoly(&t);
