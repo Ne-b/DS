@@ -3,6 +3,9 @@
 #include <string.h>
 #include <ctype.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct words
 {
     char *word;
@@ -84,7 +87,7 @@ void printmin(FILE * fo, word * head, float total, int l){
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\004\\004_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     word *head = creat(NULL, 0, 0);
     char w[100], *c, x = 1, y = 1;
     while (1)
@@ -116,7 +119,7 @@ int main()
         p = p->next;
     }
 
-    FILE *fo = fopen("D:\\Works\\C\\DS\\004\\004_o.txt", "w");
+    FILE *fo = fopen(FILE_OUT, "w");
     while(head->next){
         printmin(fo, head, total, l / 4);
     }
