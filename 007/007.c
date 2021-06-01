@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define FILE_IN stdin
+#define FILE_OUT stdout
+
 typedef struct Link
 {
     int id;
@@ -151,7 +154,7 @@ void print(FILE *fo, point *graph, int id)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\007\\007_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     int n;
     fscanf(fi, "%d ", &n);
     point *graph = malloc(sizeof(point) * (n + 1));
@@ -167,7 +170,7 @@ int main()
 
     if (ve_vl(graph, 1))
     {
-        FILE *fo = fopen("D:\\Works\\C\\DS\\007\\007_o.txt", "w");
+        FILE *fo = fopen(FILE_OUT, "w");
         print(fo, graph, 1);
         fclose(fo);
     }
