@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define FILE_IN "in.txt"
+#define FILE_OUT "out.txt"
+
 void screen(int *num, int n, int i)
 {
     while (2 * i < n)
@@ -28,7 +31,7 @@ void screen(int *num, int n, int i)
 
 int main()
 {
-    FILE *fi = fopen("D:\\Works\\C\\DS\\008\\008_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     char c;
     int n = 0;
     while ((c = fgetc(fi)) != EOF)
@@ -51,7 +54,7 @@ int main()
         screen(num, n, i);
     }
 
-    FILE * fo = fopen("D:\\Works\\C\\DS\\008\\008_o.txt", "w");
+    FILE * fo = fopen(FILE_OUT, "w");
     for (int i = 1; i <= n; ++i){
         fprintf(fo, "%d ", num[0]);
         num[0] = num[n - i];
