@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define FILE_IN stdin
-#define FILE_OUT stdout
+#define FILE_IN "in.txt"
+#define FILE_OUT "out.txt"
 
 void add(FILE *fi, int **graph)
 {
