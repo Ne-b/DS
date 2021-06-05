@@ -3,8 +3,8 @@
 #include <stdlib.h>
 #define MAX 1024
 
-#define FILE_IN stdin
-#define FILE_OUT stdout
+#define FILE_IN "in.txt"
+#define FILE_OUT "out.txt"
 
 typedef struct nodes
 {
