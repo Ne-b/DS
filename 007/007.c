@@ -21,7 +21,8 @@ typedef struct Point
     link *link;
 } point;
 
-link *add_link(link *l, int id, int weight)
+link *
+add_link(link *l, int id, int weight)
 {
     link *temp;
     if (l)
@@ -130,26 +131,53 @@ int ve_vl(point *graph, int id)
     return 1;
 }
 
-void key(FILE *fo, point *graph, int id)
+void print(FILE *fo, point *graph, int *h, int p)
 {
-    if (graph[id].temp == graph[id].in && graph[id].e == graph[id].l)
+
+    while (p >= 0)
     {
-        fprintf(fo, "%d ", id);
-        graph[id].temp = -1;
-        link *temp = graph[id].link;
-        while (temp)
+        int tempid = h[p], flag = 1;
+
+        if (!graph[tempid].link)
         {
-            key(fo, graph, temp->id);
-            temp = temp->next;
+            for (int i = 0; i <= p; ++i)
+            {
+                fprintf(fo, "%d ", h[i]);
+            }
+            fprintf(fo, "\n");
+            --p;
+            graph[tempid].temp = -1;
+            continue;
+        }
+
+        link *templk = graph[tempid].link;
+        while (templk)
+        {
+            if (graph[templk->id].temp == graph[templk->id].in && graph[templk->id].e == graph[templk->id].l)
+            {
+                flag = 0;
+                break;
+            }
+            templk = templk->next;
+        }
+        if (flag)
+        {
+            --p;
+            graph[tempid].temp = -1;
+            continue;
+        }
+
+        templk = graph[tempid].link;
+        while (templk)
+        {
+            if (graph[templk->id].temp == graph[templk->id].in && graph[templk->id].e == graph[templk->id].l)
+            {
+                h[++p] = templk->id;
+                print(fo, graph, h, p);
+            }
+            templk = templk->next;
         }
     }
-}
-
-void print(FILE *fo, point *graph, int id)
-{
-    key(fo, graph, id);
-    fprintf(fo, "\n");
-    clear(graph);
 }
 
 int main()
@@ -171,7 +199,12 @@ int main()
     if (ve_vl(graph, 1))
     {
         FILE *fo = fopen(FILE_OUT, "w");
-        print(fo, graph, 1);
+        int *h = malloc(sizeof(int) * graph[0].temp);
+        memset(h, 0, sizeof(int) * graph[0].temp);
+        int p = 0;
+        h[p] = 1;
+        print(fo, graph, h, p);
+        clear(graph);
         fclose(fo);
     }
 
