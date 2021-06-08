@@ -4,6 +4,8 @@
 #include <ctype.h>
 #define N 1021
 
+#define FILE_IN "in.txt"
+
 typedef struct Link
 {
     char *name;
@@ -17,7 +19,7 @@ int main()
 {
     char temp[1024];
     int flag = 1;
-    FILE *fi = fopen("D:\\Works\\C\\DS\\009\\009_i.txt", "r");
+    FILE *fi = fopen(FILE_IN, "r");
     while (flag)
     {
         fpos_t pos;
