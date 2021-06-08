@@ -21,8 +21,7 @@ typedef struct Point
     link *link;
 } point;
 
-link *
-add_link(link *l, int id, int weight)
+link *add_link(link *l, int id, int weight)
 {
     link *temp;
     if (l)
