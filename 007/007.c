@@ -130,21 +130,25 @@ int ve_vl(point *graph, int id)
     return 1;
 }
 
-void print(FILE *fo, point *graph, int *h, int p)
+void print(FILE *fo, point *graph, int *h, int *p, int *f)
 {
 
-    while (p >= 0)
+    while (*p >= 0)
     {
-        int tempid = h[p], flag = 1;
+        if (*f)
+        {
+            break;
+        }
+        int tempid = h[*p], flag = 1;
 
         if (!graph[tempid].link)
         {
-            for (int i = 0; i <= p; ++i)
+            for (int i = 0; i <= *p; ++i)
             {
                 fprintf(fo, "%d ", h[i]);
             }
             fprintf(fo, "\n");
-            --p;
+            --(*p);
             graph[tempid].temp = -1;
             continue;
         }
@@ -161,8 +165,18 @@ void print(FILE *fo, point *graph, int *h, int p)
         }
         if (flag)
         {
-            --p;
+            --(*p);
+            if (*p < 0)
+            {
+                *f = 1;
+            }
             graph[tempid].temp = -1;
+            templk = graph[tempid].link;
+            while (templk)
+            {
+                graph[templk->id].temp = graph[templk->id].in;
+                templk = templk->next;
+            }
             continue;
         }
 
@@ -171,8 +185,8 @@ void print(FILE *fo, point *graph, int *h, int p)
         {
             if (graph[templk->id].temp == graph[templk->id].in && graph[templk->id].e == graph[templk->id].l)
             {
-                h[++p] = templk->id;
-                print(fo, graph, h, p);
+                h[++(*p)] = templk->id;
+                print(fo, graph, h, p, f);
             }
             templk = templk->next;
         }
@@ -200,9 +214,9 @@ int main()
         FILE *fo = fopen(FILE_OUT, "w");
         int *h = malloc(sizeof(int) * graph[0].temp);
         memset(h, 0, sizeof(int) * graph[0].temp);
-        int p = 0;
+        int p = 0, f = 0;
         h[p] = 1;
-        print(fo, graph, h, p);
+        print(fo, graph, h, &p, &f);
         clear(graph);
         fclose(fo);
     }
